@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= schema.name %>|<%= table.name %></title>
+    <style>
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><%= schema.name %></h1>
+    </header>
+    <aside class="list">
+      <nav>
+        <ul>
+          <% schema.tables.each { |table| %>
+          <li><%= table.name %></li>
+          <% } %>
+        </ul>
+      </nav>
+    </aside>
+    <section class="detail">
+      <article>
+        <h2><%= table.name %></h2>
+        <p><%= table.comment %></p>
+      </article>
+      <article>
+        <h3>カラム</h3>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>カラム名</th>
+              <th>型</th>
+              <th>Not Null</th>
+              <th>デフォルト</th>
+              <th>説明</th>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </article>
+      <article>
+        <h3>プライマリキー</h3>
+      </article>
+      <article>
+        <h3>制約</h3>
+        <table>
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </article>
+      <article>
+        <h3>外部キー</h3>
+        <table>
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </article>
+      <article>
+        <h3>インデックス</h3>
+        <table>
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </article>
+    </section>
+    <footer>
+    </footer>
+  </body>
+</html>

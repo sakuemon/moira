@@ -1,0 +1,18 @@
+# gem packaging
+pkg/*
+*.gem
+# ruby version management
+.rvmrc
+.rbenv-*
+.ruby-version
+# common stuff
+bin/
+.bundle/
+Gemfile.lock
+# logs
+chromedriver.log
+# documentation and other trash
+html
+doc
+.yardoc
+coverage
