@@ -8,15 +8,20 @@ module Rdbdocumentor
     class HtmlOutputer
       def initialize(schema, output_path = './')
         @schema = schema
+        @output_path = output_path
       end
 
       def output
         transformer = HtmlTransformer.new()
 
-        top = transformer.transform_top(schema)
-        tables = []
-        schema.tables.each {|table|
-          tables << transformer.transform_table(schema, table)
+        index = File.join(@output_path, TOP_FILENAME)
+        top = transformer.transform_top(@schema)
+        File.write(index, top);
+
+        tables = {}
+        @schema.tables.each {|table|
+          file = File.join(@output_path, TABLE_FILENAME % table.name)
+          File.write(file, transformer.transform_table(@schema, table))
         }
       end
     end

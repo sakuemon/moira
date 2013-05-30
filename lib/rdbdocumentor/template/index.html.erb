@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= schema.name %></title>
+    <link rel="stylesheet" href="./main.css" type="text/css" media="screen" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html" class="schema_name"><%= schema.name %></a></h1>
+    </header>
+    <aside class="list">
+      <nav>
+        <h2>Tables</h2>
+        <ul class="tables">
+          <% schema.tables.each { |table| %>
+          <li><a href="<%=table.name %>.html"><%= table.name %></a></li>
+          <% } %>
+        </ul>
+      </nav>
+    </aside>
+    <section class="detail">
+    </section>
+    <footer>
+      <h5>powerd by rdbdoc</h5>
+    </footer>
+  </body>
+</html>

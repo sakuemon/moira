@@ -1,0 +1,6 @@
+database:
+  host: localhost
+  user_id: root
+  password: AriochGG99
+  target_schema: wordpress_test
+output_dir: tmp

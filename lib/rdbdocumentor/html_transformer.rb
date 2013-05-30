@@ -3,7 +3,9 @@ require 'erubis'
 module Rdbdocumentor
   class HtmlTransformer
 
-    def transform_top(tables)
+    def transform_top(schema)
+        erb = Erubis::Eruby.new(read_template('index.html.erb'))
+        erb.result(:schema => schema)
     end
 
     def transform_table(schema, table)

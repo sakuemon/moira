@@ -1,83 +1,171 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title><%= schema.name %>|<%= table.name %></title>
-    <style>
-    </style>
+    <title><%= table.name %> | <%= schema.name %></title>
+    <link rel="stylesheet" href="./main.css" type="text/css" media="screen" />
   </head>
   <body>
     <header>
-      <h1><%= schema.name %></h1>
+      <h1><a href="index.html" class="schema_name"><%= schema.name %></a></h1>
     </header>
     <aside class="list">
       <nav>
-        <ul>
+        <h2>Tables</h2>
+        <ul class="tables">
           <% schema.tables.each { |table| %>
-          <li><%= table.name %></li>
+          <li><a href="<%=table.name %>.html"><%= table.name %></a></li>
           <% } %>
         </ul>
       </nav>
     </aside>
     <section class="detail">
-      <article>
+      <article class="table">
         <h2><%= table.name %></h2>
         <p><%= table.comment %></p>
       </article>
       <article>
-        <h3>カラム</h3>
+        <h3>Columns</h3>
         <table>
           <thead>
             <tr>
-              <th></th>
-              <th>カラム名</th>
-              <th>型</th>
-              <th>Not Null</th>
-              <th>デフォルト</th>
-              <th>説明</th>
+              <th>No.</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Nullable</th>
+              <th>default</th>
+              <th>comment</th>
           </thead>
           <tbody>
+            <% table.cols.each.with_index(1) { |col, index| %>
+            <tr>
+              <td class="number"><a name="col_<%= col.name%>"><%= index %></a></td>
+              <td><%= col.name %></td>
+              <td><%= col.type %></td>
+              <td><%= col.nullable %></td>
+              <td><%= col.default %></td>
+              <td><%= col.comment %></td>
+            </tr>
+            <% } %>
           </tbody>
         </table>
       </article>
+
       <article>
-        <h3>プライマリキー</h3>
-      </article>
-      <article>
-        <h3>制約</h3>
+        <h3>Primary key</h3>
         <table>
           <thead>
             <tr>
+              <th>Not unique</th>
+              <th>Column</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td><%= table.primary_key.non_unique %></td>
+              <td>
+                <%= table.primary_key.cols.collect do |col| "<a href='#col_#{col}'>#{col}</a>" end.join(',&nbsp;') %>
+              </td>
+            </tr>
           </tbody>
         </table>
       </article>
+
+      <% if !table.unique_keys.empty? %>
       <article>
-        <h3>外部キー</h3>
+        <h3>Unique Keys</h3>
         <table>
           <thead>
             <tr>
+              <th>No.</th>
+              <th>Name</th>
+              <th>columns</th>
             </tr>
+          </thead>
+          <tbody>
+            <% table.unique_keys.each.with_index(1) { |key, index| %>
+            <tr>
+              <td class="number"><%= index %></td>
+              <td><%= key.name %></td>
+              <td>
+                <%= key.cols.collect do |col| "<a href='#col_#{col}'>#{col}</a>" end.join(',&nbsp;') %>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </article>
+      <% end %>
+
+      <% if !table.foreign_keys.empty? %>
+      <article>
+        <h3>Foreign keys</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Name</th>
+              <th>columns</th>
+              <th>referenced table</th>
+              <th>referenced columns</th>
+              <th>match option</th>
+              <th>update rule</th>
+              <th>delete rule</th>
+            </tr>
+            <% table.foreign_keys.each.with_index(1) { |key, index| %>
+            <tr>
+              <td class="number"><%= index %></td>
+              <td><%= key.name %></td>
+              <td>
+                <%= key.cols.collect do |col| "<a href='#col_#{col}'>#{col}</a>" end.join(',&nbsp;') %>
+              </td>
+              <td><a href="./<%= key.referenced_table %>.html"><%= key.referenced_table %></a></td>
+              <td>
+                <%= key.referenced_cols.collect do |col| "<a href='./#{key.referenced_table}.html#col_#{col}'>#{col}</a>" end.join(',&nbsp;') %>
+              </td>
+              <td><%= key.match_option %></td>
+              <td><%= key.update_rule %></td>
+              <td><%= key.delete_rule %></td>
+            </tr>
+            <% } %>
           </thead>
           <tbody>
           </tbody>
         </table>
       </article>
+      <% end %>
+
+      <% if !table.indexes.empty? %>
       <article>
-        <h3>インデックス</h3>
+        <h3>Indexes</h3>
         <table>
           <thead>
             <tr>
+              <th>No.</th>
+              <th>Index Name</th>
+              <th>Not unique</th>
+              <th>Columns</th>
             </tr>
           </thead>
           <tbody>
+            <% table.indexes.each.with_index(1) { |index, i| %>
+            <tr>
+              <td class="number"><%= i %></td>
+              <td><%= index.name %></td>
+              <td><%= index.non_unique %></td>
+              <td>
+                <%= index.cols.collect do |col| "<a href='#col_#{col}'>#{col}</a>" end.join(',&nbsp;') %>
+              </td>
+            </tr>
+            <% } %>
           </tbody>
         </table>
       </article>
+      <% end %>
+
     </section>
     <footer>
+      <h5>powerd by rdbdoc</h5>
     </footer>
   </body>
 </html>

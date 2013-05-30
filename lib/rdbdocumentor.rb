@@ -1,5 +1,5 @@
 require "rdbdocumentor/version"
+require "rdbdocumentor/cli"
 
 module Rdbdocumentor
-  # Your code goes here...
 end
