@@ -51,6 +51,7 @@
         </table>
       </article>
 
+      <% if !table.primary_key.nil? %>
       <article>
         <h3>Primary key</h3>
         <table>
@@ -70,6 +71,7 @@
           </tbody>
         </table>
       </article>
+      <% end %>
 
       <% if !table.unique_keys.empty? %>
       <article>

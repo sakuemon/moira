@@ -1,4 +1,4 @@
-module Rdbdocumentor
+module Moira
   module Domain
     class Column
       attr_accessor :name, :comment, :type, :nullable, :default, :char_length, :num_precision, :num_scale

@@ -1,4 +1,4 @@
-module Rdbdocumentor
+module Moira
   module ConfigLoader
     def read_config(config_file)
       if !File.exists?(config_file)

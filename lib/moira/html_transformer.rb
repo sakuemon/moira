@@ -1,6 +1,6 @@
 require 'erubis'
 
-module Rdbdocumentor
+module Moira
   class HtmlTransformer
 
     def transform_top(schema)

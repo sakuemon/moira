@@ -9,7 +9,7 @@ require 'thor'
 require 'yaml'
 require 'ostruct'
 
-module Rdbdocumentor
+module Moira
   class Cli < Thor
     class << self
       def exit_on_failure?
@@ -18,7 +18,7 @@ module Rdbdocumentor
     end
 
     include Thor::Actions
-    include Rdbdocumentor::ConfigLoader
+    include Moira::ConfigLoader
 
     class_option :verbose, :type => :boolean, :default => false
 
@@ -34,8 +34,8 @@ module Rdbdocumentor
       end
 
       # read database info.
-      db_info = Rdbdocumentor::DB::MysqlInfo.new(db_config.host, db_config.user_id, db_config.password, db_config.target_schema, db_config.port)
-      schema = Rdbdocumentor::Domain::Schema.new(db_config.target_schema)
+      db_info = Moira::DB::MysqlInfo.new(db_config.host, db_config.user_id, db_config.password, db_config.target_schema, db_config.port)
+      schema = Moira::Domain::Schema.new(db_config.target_schema)
       schema.tables = db_info.tables;
       schema.tables.each {|table|
         table.cols = db_info.columns(table.name)
@@ -45,7 +45,7 @@ module Rdbdocumentor
         table.foreign_keys = db_info.foreign_keys(table.name)
       }
 
-      outputer = Rdbdocumentor::Outputer::HtmlOutputer.new(schema, output_config)
+      outputer = Moira::Outputer::HtmlOutputer.new(schema, output_config)
       outputer.output
 
       # setup output dir.

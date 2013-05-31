@@ -4,7 +4,7 @@ require 'moira/domain/index'
 require 'moira/domain/foreign_key'
 require 'moira/domain/unique_key'
 
-module Rdbdocumentor
+module Moira
   module DB
     INFORMATION_SCHEMA = 'information_schema'
 
@@ -98,7 +98,7 @@ module Rdbdocumentor
       def tables()
         results = []
         @db.query(TABLE_SELECT % @schema).each do |row|
-          table = Rdbdocumentor::Domain::Table.new(row['table_name'], row['table_comment'])
+          table = Moira::Domain::Table.new(row['table_name'], row['table_comment'])
           results << table
         end
         results
@@ -107,7 +107,7 @@ module Rdbdocumentor
       def columns(table_name)
         results = []
         @db.query(COLUMN_SELECT % [@schema, table_name]).each do |row|
-          column = Rdbdocumentor::Domain::Column.new(row['column_name'], row['column_comment'])
+          column = Moira::Domain::Column.new(row['column_name'], row['column_comment'])
           column.default = row['column_default']
           column.nullable = row['is_nullable']
           column.type = row['column_type'] # mysql extension
@@ -122,7 +122,7 @@ module Rdbdocumentor
       def indexes(table_name)
         results = []
         @db.query(INDEX_SELECT % [@schema, table_name]).each do |row|
-          index = Rdbdocumentor::Domain::Index.new
+          index = Moira::Domain::Index.new
           index.name = row['index_name']
           index.non_unique = row['non_unique']
           results << index
@@ -134,7 +134,7 @@ module Rdbdocumentor
       end
 
       def primary_key(table_name)
-        result = Rdbdocumentor::Domain::Index.new
+        result = Moira::Domain::Index.new
         @db.query(PRIMARY_KEY_SELECT % [@schema, table_name]).each do |row|
           result.name = row['index_name']
           result.non_unique = row['non_unique']
@@ -146,7 +146,7 @@ module Rdbdocumentor
       def unique_keys(table_name)
         results = []
         @db.query(UNIQUE_KEY_SELECT % [@schema, table_name]).each do |row|
-          u_key = Rdbdocumentor::Domain::UniqueKey.new
+          u_key = Moira::Domain::UniqueKey.new
           u_key.name = row['constraint_name']
           @db.query(CONSTRAINT_COLUMNS_SELECT % [@schema, u_key.name, table_name]).each do |row|
             u_key.cols << row['column_name']
@@ -159,7 +159,7 @@ module Rdbdocumentor
       def foreign_keys(table_name)
         results = []
         @db.query(FOREIGN_KEY_SELECT % [@schema, table_name]).each do |row|
-          f_key = Rdbdocumentor::Domain::ForeignKey.new
+          f_key = Moira::Domain::ForeignKey.new
           f_key.name = row['constraint_name']
           f_key.match_option = row['match_option']
           f_key.update_rule = row['update_rule']

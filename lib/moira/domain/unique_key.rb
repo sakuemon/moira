@@ -1,4 +1,4 @@
-module Rdbdocumentor
+module Moira
   module Domain
     class UniqueKey
       attr_accessor :name, :cols

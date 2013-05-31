@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Rdbdocumentor::Domain::Column do
+describe Moira::Domain::Column do
   context "when new with name" do
     before do
       @c = FactoryGirl.build(:column_1)

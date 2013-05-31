@@ -2,4 +2,4 @@
 
 require 'moira'
 
-Rdbdocumentor::Cli.start
+Moira::Cli.start

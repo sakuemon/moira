@@ -1,5 +1,5 @@
 require "moira/version"
 require "moira/cli"
 
-module Rdbdocumentor
+module Moira
 end

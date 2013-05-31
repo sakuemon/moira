@@ -1,4 +1,4 @@
-module Rdbdocumentor
+module Moira
   module Domain
     class Index
       attr_accessor :name, :non_unique, :cols

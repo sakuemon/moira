@@ -1,6 +1,6 @@
 require 'moira/html_transformer'
 
-module Rdbdocumentor
+module Moira
   module Outputer
     TOP_FILENAME = 'index.html'
     TABLE_FILENAME = '%s.html'

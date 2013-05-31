@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Rdbdocumentor::Domain::Schema do
+describe Moira::Domain::Schema do
   context "when new with name and no tables" do
     before do
       @s = FactoryGirl.build(:schema)

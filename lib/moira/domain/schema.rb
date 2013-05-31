@@ -1,4 +1,4 @@
-module Rdbdocumentor
+module Moira
   module Domain
     class Schema
       attr_accessor :name, :tables

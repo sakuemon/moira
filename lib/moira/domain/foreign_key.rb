@@ -1,4 +1,4 @@
-module Rdbdocumentor
+module Moira
   module Domain
     class ForeignKey
       attr_accessor :name, :cols, :match_option, :update_rule, :delete_rule, :referenced_table, :referenced_cols

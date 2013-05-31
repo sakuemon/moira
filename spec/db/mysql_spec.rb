@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Rdbdocumentor::DB::MysqlInfo do
+describe Moira::DB::MysqlInfo do
   context 'when inspect wordpress tables to db' do
-    db = Rdbdocumentor::DB::MysqlInfo.new('127.0.0.1', 'root', 'AriochGG99', 'wordpress_test')
+    db = Moira::DB::MysqlInfo.new('127.0.0.1', 'root', 'AriochGG99', 'wordpress_test')
 
     subject {db}
     it {should_not be_nil}

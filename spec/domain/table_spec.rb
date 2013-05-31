@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Rdbdocumentor::Domain::Table do
+describe Moira::Domain::Table do
   context 'when new with name and comment' do
     before do
       @t = FactoryGirl.build(:table)

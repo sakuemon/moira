@@ -1,4 +1,4 @@
-module Rdbdocumentor
+module Moira
   module Domain
     class Table
       attr_accessor :name, :comment, :cols, :primary_key, :unique_keys, :indexes, :foreign_keys

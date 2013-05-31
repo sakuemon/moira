@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rdbdocumentor/version'
+require 'moira/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "rdbdocumentor"
-  spec.version       = Rdbdocumentor::VERSION
+  spec.name          = "moira"
+  spec.version       = Moira::VERSION
   spec.authors       = ["Tsuyoshi MIYAMOTO"]
   spec.email         = ["sakuemon@gmail.com"]
   spec.description   = %q{RDB table spec generator.}
