@@ -23,7 +23,7 @@ module Moira
     class_option :verbose, :type => :boolean, :default => false
 
     desc "output", "output task"
-    option :config, :type => :string, :default => 'rdbdoc.yml'
+    option :config, :type => :string, :default => 'moira.yml'
     def output()
       # read config file.
       begin
