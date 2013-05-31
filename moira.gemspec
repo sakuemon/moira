@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Moira::VERSION
   spec.authors       = ["Tsuyoshi MIYAMOTO"]
   spec.email         = ["sakuemon@gmail.com"]
-  spec.description   = %q{RDB table spec generator.}
-  spec.summary       = %q{RDB table spec generator}
-  spec.homepage      = ""
+  spec.description   = %q{MySQL schema spec generator.}
+  spec.summary       = %q{MySQL schema spec generator}
+  spec.homepage      = "https://github.com/sakuemon/moira"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
