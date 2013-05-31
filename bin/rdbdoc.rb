@@ -1,5 +1,5 @@
 #! /usr/bin/env ruby
 
-require 'rdbdocumentor'
+require 'moira'
 
 Rdbdocumentor::Cli.start

@@ -1,8 +1,8 @@
 require 'mysql2'
-require 'rdbdocumentor/domain/column'
-require 'rdbdocumentor/domain/index'
-require 'rdbdocumentor/domain/foreign_key'
-require 'rdbdocumentor/domain/unique_key'
+require 'moira/domain/column'
+require 'moira/domain/index'
+require 'moira/domain/foreign_key'
+require 'moira/domain/unique_key'
 
 module Rdbdocumentor
   module DB

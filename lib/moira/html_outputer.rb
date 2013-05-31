@@ -1,4 +1,4 @@
-require 'rdbdocumentor/html_transformer'
+require 'moira/html_transformer'
 
 module Rdbdocumentor
   module Outputer

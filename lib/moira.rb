@@ -1,5 +1,5 @@
-require "rdbdocumentor/version"
-require "rdbdocumentor/cli"
+require "moira/version"
+require "moira/cli"
 
 module Rdbdocumentor
 end

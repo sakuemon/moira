@@ -1,4 +1,4 @@
-require 'rdbdocumentor/domain/column'
+require 'moira/domain/column'
 
 FactoryGirl.define do
 
