@@ -1,20 +1,17 @@
 # Moira
 
-TODO: Write a gem description
+Schema information generator for MySQL.
+
+1. Table name and comment.
+1. Column name, type, nullable, defaulte and comment.
+2. Unique key name and columns name.
+2. Primary key name and columns name.
+3. Index name and columns name.
+4. Foreign key name, columns name, reference table name and columns name.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'moira'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install moira
+TODO: Register rubygems
 
 ## Usage
 
