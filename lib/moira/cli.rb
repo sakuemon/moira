@@ -27,15 +27,11 @@ module Moira
     option :config, :type => :string, :default => 'moira.yml'
     def output()
       # read config file.
-      begin
-        db_config,output_config = read_config(options[:config])
-      rescue => e
-        error e.message
-        exit 1
-      end
+      db_config,output_config = read_config(options[:config])
 
       # read database info.
       schema = Moira::DBInfoReader.new(db_config.host, db_config.user_id, db_config.password, db_config.target_schema, db_config.port).read_schema
+
 
       outputer = Moira::Outputer::HtmlOutputer.new(schema, output_config)
       outputer.output

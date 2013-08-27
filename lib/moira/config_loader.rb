@@ -1,3 +1,5 @@
+require 'yaml'
+
 module Moira
   module ConfigLoader
     def read_config(config_file)
