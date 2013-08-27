@@ -1,10 +1,11 @@
 require 'moira'
 require 'moira/config_loader'
 require 'moira/html_outputer'
-require 'moira/db/mysql_info'
-require 'moira/domain/schema'
-require 'moira/domain/table'
-require 'moira/domain/column'
+# require 'moira/db/mysql_info'
+require 'moira/db_info_reader'
+# require 'moira/domain/schema'
+# require 'moira/domain/table'
+# require 'moira/domain/column'
 require 'thor'
 require 'yaml'
 require 'ostruct'
@@ -34,16 +35,7 @@ module Moira
       end
 
       # read database info.
-      db_info = Moira::DB::MysqlInfo.new(db_config.host, db_config.user_id, db_config.password, db_config.target_schema, db_config.port)
-      schema = Moira::Domain::Schema.new(db_config.target_schema)
-      schema.tables = db_info.tables;
-      schema.tables.each {|table|
-        table.cols = db_info.columns(table.name)
-        table.primary_key = db_info.primary_key(table.name)
-        table.unique_keys = db_info.unique_keys(table.name)
-        table.indexes = db_info.indexes(table.name)
-        table.foreign_keys = db_info.foreign_keys(table.name)
-      }
+      schema = Moira::DBInfoReader.new(db_config.host, db_config.user_id, db_config.password, db_config.target_schema, db_config.port).read_schema
 
       outputer = Moira::Outputer::HtmlOutputer.new(schema, output_config)
       outputer.output
@@ -53,12 +45,6 @@ module Moira
 
       copy_file File.join(File.expand_path('../template', __FILE__), 'main.css'), File.join(output_config, 'main.css')
 
-    end
-
-    desc "dryrun", "dry run"
-    def dryrun()
-      # test output directory.
-      # test connect database.
     end
 
     default_task :output
